@@ -8,7 +8,7 @@ export default function CountryCard({ country }: { country: any }) {
   return (
     <Link
       href={`/country/${country.name}`}
-      className="flex flex-col rounded-lg shadow-sm overflow-hidden bg-white-dm-text-lm-elements"
+      className="flex flex-col rounded-lg shadow-sm overflow-hidden bg-white-dm-text-lm-elements dark:bg-dark-blue dark:text-white-dm-text-lm-elements"
     >
       <div className="h-[148px]">
         <Image

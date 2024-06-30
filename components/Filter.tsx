@@ -22,16 +22,16 @@ export default function Filter({ handleRegion }: FilterProps) {
   };
 
   return (
-    <div className="relative w-[240px]">
+    <div className="relative w-[240px] dark:text-white-dm-text-lm-elements">
       <button
-        className="w-full py-3 px-1 center gap-12 bg-white shadow-md rounded-md"
+        className="w-full py-3 px-1 center gap-12 bg-white shadow-md rounded-md dark:bg-dark-blue"
         onClick={() => setIsOpen(!isOpen)}
       >
         {regionKey}
         <span>{isOpen ? <FaChevronUp /> : <FaChevronDown />}</span>
       </button>
       {isOpen && (
-        <div className="absolute w-[240px] flex flex-col gap-0.5 bg-white-dm-text-lm-elements mt-3 rounded-md shadow-md overflow-hidden">
+        <div className="absolute w-[240px] flex flex-col gap-0.5 bg-white-dm-text-lm-elements mt-3 rounded-md shadow-md overflow-hidden dark:bg-dark-blue">
           {regions.map((region: string) => (
             <Button
               key={region}
