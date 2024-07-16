@@ -3,7 +3,7 @@ export async function fetchCountries(search: string = "", region: string = "") {
     const response = await fetch("https://restcountries.com/v3.1/all");
     const data = await response.json();
 
-    await new Promise((resolve) => setTimeout(resolve, 5000));
+    // await new Promise((resolve) => setTimeout(resolve, 5000));
 
     if (search || region) {
       return data
