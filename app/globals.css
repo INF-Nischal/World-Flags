@@ -15,9 +15,13 @@
 }
 
 .main {
-    @apply h-full w-full flex flex-col px-6 gap-8 md:px-12 lg:gap-12 lg:px-24 lg:py-12;
+    @apply min-h-[90vh] w-full flex flex-col px-6 gap-8 md:px-12 lg:gap-12 lg:px-24 lg:py-12;
 }
 
 .country-details {
     @apply min-h-[90vh] px-8 py-12 lg:px-24 lg:py-12;
+}
+
+.shimmer {
+    @apply before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/60 before:to-transparent;
 }

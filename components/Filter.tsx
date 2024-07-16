@@ -1,28 +1,44 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa6";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import Button from "./Button";
+import { useDropdownEffect } from "@/utils/dropdownUtils";
 
-interface FilterProps {
-  handleRegion: (e: any) => void;
-}
+export default function Filter() {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
-export default function Filter({ handleRegion }: FilterProps) {
   const regions = ["Africa", "Americas", "Asia", "Europe", "Oceania"];
 
   const [regionKey, setRegionKey] = useState<string>("Filter by Region");
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const handleRegionChange = (region: string) => {
+    const newSearchQuery = new URLSearchParams(searchParams);
     setRegionKey(region);
     setIsOpen(false);
-    handleRegion(region);
+
+    if (region !== "Filter by Region") {
+      newSearchQuery.set("region", region);
+    } else {
+      newSearchQuery.delete("region");
+    }
+
+    router.replace(`${pathname}?${newSearchQuery.toString()}`);
   };
 
+  useDropdownEffect(dropdownRef, setIsOpen);
+
   return (
-    <div className="relative w-[240px] dark:text-white-dm-text-lm-elements">
+    <div
+      ref={dropdownRef}
+      className="relative w-[240px] dark:text-white-dm-text-lm-elements"
+    >
       <button
         className="w-full py-3 px-1 center gap-12 bg-white shadow-md rounded-md dark:bg-dark-blue"
         onClick={() => setIsOpen(!isOpen)}
