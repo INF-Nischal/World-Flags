@@ -53,9 +53,9 @@ const CountryDetails = ({ name }: { name: string }) => {
         <Image
           src={country.flags.svg}
           alt="Country Flag"
-          width={500}
-          height={300}
-          className="object-contain w-full h-full"
+          width={240}
+          height={240}
+          className="w-full h-full"
         />
       </div>
       <div className="w-full lg:w-[60%] flex flex-col justify-center gap-6">
@@ -103,7 +103,7 @@ const CountryDetails = ({ name }: { name: string }) => {
               Languages:{" "}
               {Object.entries(country.languages).map(([key, value]) => (
                 <span key={key} className="font-normal">
-                  {value}
+                  {value}{" "}
                 </span>
               ))}
             </p>

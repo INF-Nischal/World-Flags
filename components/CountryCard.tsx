@@ -8,14 +8,14 @@ export default function CountryCard({ country }: { country: any }) {
   return (
     <Link
       href={`/country/${country.name.common}`}
-      className="flex flex-col rounded-lg shadow-sm overflow-hidden bg-white-dm-text-lm-elements dark:bg-dark-blue dark:text-white-dm-text-lm-elements"
+      className="flex flex-col rounded-[9px] shadow-md overflow-hidden bg-white-dm-text-lm-elements dark:bg-dark-blue dark:text-white-dm-text-lm-elements"
     >
       <Image
         src={`${country.flags.svg}`}
         alt="Country Flag"
         width={0}
         height={0}
-        className="h-48 w-full object-cover"
+        className="h-40 w-full object-cover"
       />
 
       <div className="description px-8 py-6 flex flex-col gap-2">
