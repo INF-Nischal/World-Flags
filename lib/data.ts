@@ -3,20 +3,20 @@ export async function fetchCountries(search: string = "", region: string = "") {
     const response = await fetch("https://restcountries.com/v3.1/all");
     const data = await response.json();
 
-    // await new Promise((resolve) => setTimeout(resolve, 5000));
-
-    if (search || region) {
-      return data
-        .filter(
-          (country: any) =>
-            country.region.toLowerCase() === region.toLowerCase()
-        )
-        .filter((country: any) =>
-          country.name.common.toLowerCase().includes(search.toLowerCase())
-        );
-    } else {
-      return data;
+    let filteredData = data;
+    if (region) {
+      filteredData = filteredData.filter(
+        (country: any) => country.region.toLowerCase() === region.toLowerCase()
+      );
     }
+
+    if (search) {
+      filteredData = filteredData.filter((country: any) =>
+        country.name.common.toLowerCase().includes(search.toLowerCase())
+      );
+    }
+
+    return filteredData;
   } catch (error) {
     console.error(error);
     return [];

@@ -1,10 +1,5 @@
-"use client";
-
-import { useState, useEffect } from "react";
 import { getCountryByName } from "@/lib/data";
 import Image from "next/image";
-import CountUp from "react-countup";
-import CountryDetailsSkeleton from "./skeletons/CountryDetailsSkeleton";
 import Link from "next/link";
 
 interface Country {
@@ -31,31 +26,18 @@ interface Country {
   borderCountries: string[];
 }
 
-const CountryDetails = ({ name }: { name: string }) => {
-  const [country, setCountry] = useState<Country>();
-
-  useEffect(() => {
-    const getCountry = async () => {
-      const country = await getCountryByName(name);
-      setCountry(country);
-    };
-
-    getCountry();
-  }, [name]);
-
-  if (!country) {
-    return <CountryDetailsSkeleton />;
-  }
+const CountryDetails = async ({ name }: { name: string }) => {
+  const country: Country = await getCountryByName(name);
 
   return (
     <div className="flex flex-col gap-8 lg:flex-row lg:gap-24">
-      <div className="w-full h-[240px] lg:w-[720px] lg:h-[360px]">
+      <div className="w-full h-[240px] lg:w-[720px] lg:h-[405px]">
         <Image
           src={country.flags.svg}
           alt="Country Flag"
           width={240}
           height={240}
-          className="w-full h-full"
+          className="w-full h-full object-contain"
         />
       </div>
       <div className="w-full lg:w-[60%] flex flex-col justify-center gap-6">
@@ -70,7 +52,7 @@ const CountryDetails = ({ name }: { name: string }) => {
               Population:
               <span className="font-[300]">
                 {" "}
-                <CountUp end={country.population} duration={1.75} />
+                {country.population.toLocaleString()}
               </span>
             </p>
             <p className="font-[600]">

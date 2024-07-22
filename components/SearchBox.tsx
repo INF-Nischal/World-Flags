@@ -1,16 +1,19 @@
 "use client";
 
+import { useEffect } from "react";
 import { useDebouncedCallback } from "use-debounce";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useState } from "react";
 
 export default function SearchBox() {
+  const [searchQuery, setSearchQuery] = useState("");
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
   const debounced = useDebouncedCallback((value) => {
-    const newSearchQuery = new URLSearchParams(searchParams);
+    const newSearchQuery = new URLSearchParams(searchParams.toString());
 
     if (value.length > 0) {
       newSearchQuery.set("name", value);
@@ -19,6 +22,11 @@ export default function SearchBox() {
     }
     router.replace(`${pathname}?${newSearchQuery.toString()}`);
   }, 1000);
+
+  useEffect(() => {
+    const name = searchParams.get("name");
+    setSearchQuery(name || "");
+  }, [searchParams]);
 
   return (
     <div className="relative flex items-center dark:text-white-dm-text-lm-elements">
@@ -29,10 +37,11 @@ export default function SearchBox() {
         type="text"
         placeholder="Search for a country..."
         className="w-[480px] pl-16 py-3 rounded-md shadow-md dark:bg-dark-blue dark:text-white-dm-text-lm-elements"
-        defaultValue=""
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-          debounced(e.target.value)
-        }
+        value={searchQuery}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+          setSearchQuery(e.target.value);
+          debounced(e.target.value);
+        }}
       />
     </div>
   );

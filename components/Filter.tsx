@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useState, useRef } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa6";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import Button from "./Button";
@@ -11,7 +11,14 @@ export default function Filter() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const regions = ["Africa", "Americas", "Asia", "Europe", "Oceania"];
+  const regions = [
+    "Remove Filter",
+    "Africa",
+    "Americas",
+    "Asia",
+    "Europe",
+    "Oceania",
+  ];
 
   const [regionKey, setRegionKey] = useState<string>("Filter by Region");
 
@@ -23,7 +30,11 @@ export default function Filter() {
     setRegionKey(region);
     setIsOpen(false);
 
-    if (region !== "Filter by Region") {
+    if (region === "Remove Filter") {
+      newSearchQuery.delete("region");
+      router.replace(`${pathname}}`);
+      setRegionKey("Filter by Region");
+    } else if (region !== "Filter by Region") {
       newSearchQuery.set("region", region);
     } else {
       newSearchQuery.delete("region");
