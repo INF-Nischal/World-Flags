@@ -7,14 +7,13 @@ interface ButtonProps {
 
 const Button = ({ title, handleRegionChange }: ButtonProps) => {
   return (
-    <div>
-      <button
-        className="w-full px-4 py-2 text-start bg-[var(--background)] text-[var(--text)] hover:bg-[var(--hover)]"
-        onClick={() => handleRegionChange(title)}
-      >
-        {title}
-      </button>
-    </div>
+    <button
+      className="w-full px-6 py-2 text-start text-very-dark-blue-dm-bg dark:text-white-dm-text-lm-elements text-xs
+      hover:bg-very-dark-blue-dm-bg hover:text-white-dm-text-lm-elements dark:hover:bg-white-dm-text-lm-elements dark:hover:text-very-dark-blue-dm-bg"
+      onClick={() => handleRegionChange(title)}
+    >
+      {title}
+    </button>
   );
 };
 

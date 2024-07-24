@@ -10,7 +10,7 @@ const nunitoSans = Nunito_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Rest Country API",
+  title: "Country Flags",
   description:
     "A simple app to search for countries using the Rest Country API",
 };

@@ -91,14 +91,14 @@ const CountryDetails = async ({ name }: { name: string }) => {
             </p>
           </div>
         </div>
-        <div className="font-[600] mt-6 flex">
-          <div className="w-56 lg:w-40">Border Countries: </div>
-          <div className="flex gap-4 flex-wrap">
+        <div className="font-[600] mt-6 flex flex-col gap-2 lg:flex-row lg:gap-0">
+          <div className="w-36 lg:w-40">Border Countries: </div>
+          <div className="flex items-center gap-4 flex-wrap">
             {country?.borderCountries?.map((border: string) => (
               <Link
                 href={"/country/" + border}
                 key={border}
-                className="font-[300] rounded-md px-2 py-0.5 text-sm dark:bg-dark-blue"
+                className="font-[300] rounded-sm px-6 py-[4px] text-sm shadow-md dark:bg-dark-blue"
               >
                 {border}
               </Link>

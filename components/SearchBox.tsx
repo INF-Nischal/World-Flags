@@ -36,7 +36,7 @@ export default function SearchBox() {
       <input
         type="text"
         placeholder="Search for a country..."
-        className="w-[480px] pl-16 py-3 rounded-md shadow-md dark:bg-dark-blue dark:text-white-dm-text-lm-elements"
+        className="w-[480px] h-[48px] pl-16 py-3 rounded-md shadow-md dark:bg-dark-blue dark:text-white-dm-text-lm-elements placeholder:text-sm text-xs"
         value={searchQuery}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
           setSearchQuery(e.target.value);
