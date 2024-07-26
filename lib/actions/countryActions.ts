@@ -1,3 +1,5 @@
+import { Country } from "../definitions/countryDefinitions";
+
 export async function fetchCountries(search: string = "", region: string = "") {
   try {
     const response = await fetch("https://restcountries.com/v3.1/all");
@@ -6,12 +8,13 @@ export async function fetchCountries(search: string = "", region: string = "") {
     let filteredData = data;
     if (region) {
       filteredData = filteredData.filter(
-        (country: any) => country.region.toLowerCase() === region.toLowerCase()
+        (country: Country) =>
+          country.region.toLowerCase() === region.toLowerCase()
       );
     }
 
     if (search) {
-      filteredData = filteredData.filter((country: any) =>
+      filteredData = filteredData.filter((country: Country) =>
         country.name.common.toLowerCase().includes(search.toLowerCase())
       );
     }
@@ -29,7 +32,7 @@ export async function getCountryByName(name: string) {
     const data = await response.json();
 
     if (data[0].borders && data[0].borders.length > 0) {
-      const borderCountries = data[0].borders.map(async (border: any) => {
+      const borderCountries = data[0].borders.map(async (border: string[]) => {
         const response = await fetch(
           `https://restcountries.com/v3.1/alpha/${border}`
         );

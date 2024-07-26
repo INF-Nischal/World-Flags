@@ -2,13 +2,13 @@
 
 import React from "react";
 import CountryCard from "./CountryCard";
-import { fetchCountries } from "@/lib/data";
+import { fetchCountries } from "@/lib/actions/countryActions";
 
-interface CountryListProps {
+const CountryList = async ({
+  searchParams,
+}: {
   searchParams: { name?: string; region?: string };
-}
-
-const CountryList = async ({ searchParams }: CountryListProps) => {
+}) => {
   const countries = await fetchCountries(
     searchParams.name || "",
     searchParams.region || ""

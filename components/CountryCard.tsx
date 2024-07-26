@@ -1,10 +1,11 @@
 "use client";
 
+import { Country } from "@/lib/definitions/countryDefinitions";
 import Image from "next/image";
 import Link from "next/link";
 import CountUp from "react-countup";
 
-export default function CountryCard({ country }: { country: any }) {
+export default function CountryCard({ country }: { country: Country }) {
   return (
     <Link
       href={`/country/${country.name.official}`}

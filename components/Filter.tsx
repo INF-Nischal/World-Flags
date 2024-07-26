@@ -4,8 +4,8 @@ import { useState, useRef, useEffect } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa6";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import Button from "./Button";
-import { useDropdownEffect } from "@/utils/dropdownUtils";
 import { AnimatePresence, motion } from "framer-motion";
+import { useDropdownEffect } from "@/lib/utils/dropdownUtils";
 
 export default function Filter() {
   const router = useRouter();
@@ -15,7 +15,7 @@ export default function Filter() {
   const regions = [
     "Remove Filter",
     "Africa",
-    "America",
+    "Americas",
     "Asia",
     "Europe",
     "Oceania",

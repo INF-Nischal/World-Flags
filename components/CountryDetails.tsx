@@ -1,30 +1,7 @@
-import { getCountryByName } from "@/lib/data";
+import { getCountryByName } from "@/lib/actions/countryActions";
+import { Country } from "@/lib/definitions/countryDefinitions";
 import Image from "next/image";
 import Link from "next/link";
-
-interface Country {
-  name: {
-    common: string;
-    official: string;
-  };
-  flags: {
-    svg: string;
-  };
-  population: number;
-  region: string;
-  subregion: string;
-  capital: string;
-  tld: string;
-  currencies: {
-    [key: string]: {
-      name: string;
-    };
-  };
-  languages: {
-    [key: string]: string;
-  };
-  borderCountries: string[];
-}
 
 const CountryDetails = async ({ name }: { name: string }) => {
   const country: Country = await getCountryByName(name);
